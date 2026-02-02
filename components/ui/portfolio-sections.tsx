@@ -395,22 +395,45 @@ export function PortfolioSections({
                     className={`flex items-center justify-between border-b ${borderToneSoft} pb-3`}
                   >
                     <span>Email</span>
-                    <span className={labelText}>hello@ngenedaniel.dev</span>
+                    <span className={labelText}>ngenedaniel16@gmail.com</span>
+                  </div>
+                  <div
+                    className={`flex items-center justify-between border-b ${borderToneSoft} pb-3`}
+                  >
+                    <span>Phone</span>
+                    <span className={labelText}>+2349066666515</span>
                   </div>
                   <div
                     className={`flex items-center justify-between border-b ${borderToneSoft} pb-3`}
                   >
                     <span>Location</span>
-                    <span className={labelText}>Remote / Global</span>
+                    <span className={labelText}>Lagos, Nigeria</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Availability</span>
                     <span className={labelText}>2026 Q1</span>
                   </div>
                 </div>
-                <Button className="mt-8 w-full bg-[#C3E41D] text-black hover:bg-[#d3f046] transition-transform duration-500 hover:-translate-y-1">
-                  Schedule a Call
-                </Button>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="mailto:ngenedaniel16@gmail.com"
+                    className={`inline-flex items-center gap-2 rounded-full border ${borderTone} px-4 py-2 text-xs uppercase tracking-wide ${bodyText} transition-all duration-500 hover:-translate-y-0.5 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
+                  >
+                    Email
+                  </a>
+                  <a
+                    href="tel:+2349066666515"
+                    className={`inline-flex items-center gap-2 rounded-full border ${borderTone} px-4 py-2 text-xs uppercase tracking-wide ${bodyText} transition-all duration-500 hover:-translate-y-0.5 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
+                  >
+                    Call
+                  </a>
+                  <a
+                    href="https://github.com/DanielChristLight1999"
+                    className={`inline-flex items-center gap-2 rounded-full border ${borderTone} px-4 py-2 text-xs uppercase tracking-wide ${bodyText} transition-all duration-500 hover:-translate-y-0.5 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
+                  >
+                    GitHub
+                  </a>
+                </div>
               </div>
             </Reveal>
           </div>

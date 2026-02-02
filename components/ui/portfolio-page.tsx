@@ -11,6 +11,7 @@ export default function PortfolioPage() {
   const [isDark, setIsDark] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isCompactLayout, setIsCompactLayout] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -33,6 +34,14 @@ export default function PortfolioPage() {
       if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1024px)");
+    const handleChange = () => setIsCompactLayout(mediaQuery.matches);
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
@@ -63,7 +72,7 @@ export default function PortfolioPage() {
   };
 
   const parallax = (speed: number, offset = 0) =>
-    `translateY(${scrollY * speed + offset}px)`;
+    isCompactLayout ? "translateY(0px)" : `translateY(${scrollY * speed + offset}px)`;
 
   const menuItems = [
     { label: "HOME", href: "#top", highlight: true },
