@@ -20,6 +20,11 @@ export interface TechStackItem {
   value: string;
 }
 
+interface CapabilityItem {
+  label: string;
+  value: string;
+}
+
 interface ToneTokens {
   labelText: string;
   mutedText: string;
@@ -38,6 +43,24 @@ interface PortfolioSectionsProps {
   projects: ProjectItem[];
   techStack: TechStackItem[];
   workPrinciples: string[];
+  primaryCategory: "web3" | "other";
+  aboutTitle: string;
+  aboutBody: string;
+  aboutTags: string[];
+  coreStrengths: string[];
+  buildHeading: string;
+  projectsHeading: string;
+  projectsIntro: string;
+  experienceHeading: string;
+  experienceBody: string;
+  capabilities: CapabilityItem[];
+  techStackIntro: string;
+  howIWorkHeading: string;
+  howIWorkBody: string;
+  contactHeading: string;
+  contactBody: string;
+  otherProjectsHeading: string;
+  otherProjectsIntro: string;
   parallax: (speed: number, offset?: number) => string;
   onViewProjects?: () => void;
 }
@@ -48,6 +71,24 @@ export function PortfolioSections({
   projects,
   techStack,
   workPrinciples,
+  primaryCategory,
+  aboutTitle,
+  aboutBody,
+  aboutTags,
+  coreStrengths,
+  buildHeading,
+  projectsHeading,
+  projectsIntro,
+  experienceHeading,
+  experienceBody,
+  capabilities,
+  techStackIntro,
+  howIWorkHeading,
+  howIWorkBody,
+  contactHeading,
+  contactBody,
+  otherProjectsHeading,
+  otherProjectsIntro,
   parallax,
   onViewProjects,
 }: PortfolioSectionsProps) {
@@ -63,8 +104,8 @@ export function PortfolioSections({
     bulletTone,
   } = tokens;
 
-  const web3Projects = projects.filter((project) => project.category === "web3");
-  const otherProjects = projects.filter((project) => project.category === "other");
+  const primaryProjects = projects.filter((project) => project.category === primaryCategory);
+  const otherProjects = projects.filter((project) => project.category !== primaryCategory);
 
   return (
     <>
@@ -75,24 +116,20 @@ export function PortfolioSections({
               <div>
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>About</p>
                 <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
-                  Web3 engineer focused on secure Solana systems.
+                  {aboutTitle}
                 </h2>
                 <p className={`mt-6 text-base sm:text-lg ${mutedText} leading-relaxed max-w-2xl`}>
-                  I&apos;m a Web3 engineer building production-grade Solana applications across smart
-                  contracts, protocol tooling, indexing infrastructure, and Web3 frontends. I ship
-                  systems that are secure, scalable, and actually usable by real users.
+                  {aboutBody}
                 </p>
                 <div className="mt-10 flex flex-wrap gap-3">
-                  {["Security-first", "Product-minded", "Systems builder", "Operational UX"].map(
-                    (tag) => (
-                      <span
-                        key={tag}
-                        className={`rounded-full border ${chipBorder} px-4 py-1.5 text-sm ${bodyText} transition-all duration-500 hover:-translate-y-1 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
-                      >
-                        {tag}
-                      </span>
-                    )
-                  )}
+                  {aboutTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`rounded-full border ${chipBorder} px-4 py-1.5 text-sm ${bodyText} transition-all duration-500 hover:-translate-y-1 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -103,12 +140,7 @@ export function PortfolioSections({
               >
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>Core Strengths</p>
                 <ul className={`mt-6 space-y-4 ${bodyText}`}>
-                  {[
-                    "Solana programs with PDA validation and safe authority models",
-                    "Protocol tooling for markets, fees, and treasury flows",
-                    "Indexing pipelines for analytics and protocol state",
-                    "Web3 UX with reliable transaction handling",
-                  ].map((item) => (
+                  {coreStrengths.map((item) => (
                     <li key={item} className="flex gap-3">
                       <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#C3E41D]" />
                       <span>{item}</span>
@@ -128,7 +160,7 @@ export function PortfolioSections({
               <div className="max-w-2xl">
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>What I Build</p>
                 <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
-                  End-to-end Web3 systems for real users.
+                  {buildHeading}
                 </h2>
               </div>
               <Button
@@ -161,17 +193,14 @@ export function PortfolioSections({
               <div className="max-w-2xl">
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>Key Projects</p>
                 <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
-                  Solana projects built for safety and scale.
+                  {projectsHeading}
                 </h2>
               </div>
-              <p className={`${mutedText} max-w-md text-sm sm:text-base`}>
-                Highlighted Web3 projects plus other production systems built across security,
-                analytics, and real-world operations.
-              </p>
+              <p className={`${mutedText} max-w-md text-sm sm:text-base`}>{projectsIntro}</p>
             </div>
           </Reveal>
           <div className="mt-14 md:mt-16 grid lg:grid-cols-2 gap-7 md:gap-9">
-            {web3Projects.map((project, index) => (
+            {primaryProjects.map((project, index) => (
               <Reveal key={project.title} delay={index * 90}>
                 <article
                   className={`rounded-3xl border ${borderTone} ${panelBg} p-8 transition-all duration-700 hover:-translate-y-2 hover:border-[#C3E41D]/40`}
@@ -222,10 +251,10 @@ export function PortfolioSections({
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <div className="max-w-2xl">
                   <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>
-                    Other Projects
+                    {otherProjectsHeading}
                   </p>
                   <h3 className="mt-4 text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight">
-                    Additional systems shipped across security, analytics, and commerce.
+                    {otherProjectsIntro}
                   </h3>
                 </div>
               </div>
@@ -279,11 +308,10 @@ export function PortfolioSections({
                   Experience Focus
                 </p>
                 <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
-                  Reliability across on-chain and off-chain systems.
+                  {experienceHeading}
                 </h2>
                 <p className={`mt-6 text-base sm:text-lg ${mutedText} leading-relaxed max-w-xl`}>
-                  I build and operate Solana programs, protocol tooling, and indexing services with
-                  production-grade reliability. The focus stays on invariants, safety, and clean UX.
+                  {experienceBody}
                 </p>
               </div>
             </Reveal>
@@ -294,28 +322,15 @@ export function PortfolioSections({
               >
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>Capabilities</p>
                 <div className={`mt-6 space-y-4 ${bodyText}`}>
-                  <div
-                    className={`flex items-start justify-between gap-4 border-b ${borderToneSoft} pb-4`}
-                  >
-                    <span>Solana program architecture</span>
-                    <span className={`text-sm ${labelText}`}>Safety & logic</span>
-                  </div>
-                  <div
-                    className={`flex items-start justify-between gap-4 border-b ${borderToneSoft} pb-4`}
-                  >
-                    <span>Indexing + analytics</span>
-                    <span className={`text-sm ${labelText}`}>Data pipelines</span>
-                  </div>
-                  <div
-                    className={`flex items-start justify-between gap-4 border-b ${borderToneSoft} pb-4`}
-                  >
-                    <span>Wallet auth + sessions</span>
-                    <span className={`text-sm ${labelText}`}>Security & UX</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-4">
-                    <span>Web3 frontends</span>
-                    <span className={`text-sm ${labelText}`}>Transaction UX</span>
-                  </div>
+                  {capabilities.map((item, index) => (
+                    <div
+                      key={item.label}
+                      className={`flex items-start justify-between gap-4 ${index < capabilities.length - 1 ? `border-b ${borderToneSoft} pb-4` : ""}`}
+                    >
+                      <span>{item.label}</span>
+                      <span className={`text-sm ${labelText}`}>{item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -333,10 +348,7 @@ export function PortfolioSections({
                   Tooling optimized for fast iteration and reliability.
                 </h2>
               </div>
-              <div className={`${mutedText} max-w-md text-sm sm:text-base`}>
-                Writing on Solana engineering, system design, and Web3 UX soon. Here&apos;s the stack
-                behind my recent work.
-              </div>
+              <div className={`${mutedText} max-w-md text-sm sm:text-base`}>{techStackIntro}</div>
             </div>
           </Reveal>
           <div className="mt-12 md:mt-14 grid sm:grid-cols-2 gap-5 md:gap-6">
@@ -361,11 +373,10 @@ export function PortfolioSections({
               <div>
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>How I Work</p>
                 <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
-                  Web3 execution with a reliability mindset.
+                  {howIWorkHeading}
                 </h2>
                 <p className={`mt-6 text-base sm:text-lg ${mutedText} leading-relaxed max-w-xl`}>
-                  I treat Web3 infrastructure as financial infrastructure. That means explicit
-                  invariants, safe authority models, and transaction UX that users can trust.
+                  {howIWorkBody}
                 </p>
                 <div className="mt-10 grid sm:grid-cols-2 gap-4">
                   {workPrinciples.map((item, index) => (
@@ -386,10 +397,8 @@ export function PortfolioSections({
                 style={{ transform: parallax(-0.02) }}
               >
                 <p className={`text-sm uppercase tracking-[0.25em] ${labelText}`}>Let&apos;s Talk</p>
-                <h3 className="mt-4 text-2xl font-semibold">Open to Web3 collaborations.</h3>
-                <p className={`mt-4 ${mutedText}`}>
-                  Reach out for Solana programs, protocol tooling, or Web3 product work.
-                </p>
+                <h3 className="mt-4 text-2xl font-semibold">{contactHeading}</h3>
+                <p className={`mt-4 ${mutedText}`}>{contactBody}</p>
                 <div className={`mt-6 space-y-3 ${bodyText}`}>
                   <div
                     className={`flex items-center justify-between border-b ${borderToneSoft} pb-3`}

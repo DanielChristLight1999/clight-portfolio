@@ -7,9 +7,10 @@ import { BlurText } from "@/components/ui/portfolio-shared";
 interface PortfolioHeroProps {
   parallax: (speed: number, offset?: number) => string;
   labelText: string;
+  tagline: string;
 }
 
-export default function PortfolioHero({ parallax, labelText }: PortfolioHeroProps) {
+export default function PortfolioHero({ parallax, labelText, tagline }: PortfolioHeroProps) {
   return (
     <main className="relative z-10 min-h-screen flex flex-col overflow-hidden">
       <div
@@ -65,7 +66,7 @@ export default function PortfolioHero({ parallax, labelText }: PortfolioHeroProp
       <div className="absolute bottom-14 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
         <div className="flex justify-center">
           <BlurText
-            text="Web3 Engineer (Solana-Focused)"
+            text={tagline}
             delay={150}
             animateBy="words"
             direction="top"

@@ -84,13 +84,129 @@ export default function PortfolioPage() {
     { label: "CONTACT", href: "#contact" },
   ];
 
-  const whatIBuild = [
-    "Solana programs with deterministic PDA structures and safe upgrades",
-    "Protocol tooling for treasury, fees, and market lifecycle management",
-    "Indexing and analytics pipelines for on-chain state + user positions",
-    "Web3 frontends with clear transaction states and wallet UX",
-    "Operational infrastructure for high-volume token distributions",
-  ];
+  const portfolioMode = (process.env.NEXT_PUBLIC_PORTFOLIO_MODE ?? "web3").toLowerCase();
+  const isWeb3 = !["js", "javascript", "software", "fullstack"].includes(portfolioMode);
+
+  const content = isWeb3
+    ? {
+        heroTagline: "Web3 Engineer (Solana-Focused)",
+        aboutTitle: "Web3 engineer focused on secure Solana systems.",
+        aboutBody:
+          "I’m a Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends. I ship systems that are secure, scalable, and actually usable by real users.",
+        aboutTags: ["Security-first", "Protocol-focused", "Systems builder", "User-ready UX"],
+        coreStrengths: [
+          "Solana programs with PDA validation and safe authority models",
+          "Protocol tooling for markets, fees, and treasury flows",
+          "Indexing pipelines for analytics and protocol state",
+          "Web3 UX with reliable transaction handling",
+        ],
+        buildHeading: "End-to-end Web3 systems for real users.",
+        projectsHeading: "Solana projects built for safety and scale.",
+        projectsIntro:
+          "Highlighted Web3 projects plus other production systems built across security, analytics, and real-world operations.",
+        experienceHeading: "Reliability across on-chain and off-chain systems.",
+        experienceBody:
+          "I build and operate Solana programs, protocol tooling, and indexing services with production-grade reliability. The focus stays on invariants, safety, and clean UX.",
+        capabilities: [
+          { label: "Solana program architecture", value: "Safety & logic" },
+          { label: "Indexing + analytics", value: "Data pipelines" },
+          { label: "Wallet auth + sessions", value: "Security & UX" },
+          { label: "Web3 frontends", value: "Transaction UX" },
+        ],
+        techStackIntro:
+          "Writing on Solana engineering, system design, and Web3 UX soon. Here’s the stack behind my recent work.",
+        howIWorkHeading: "Web3 execution with a reliability mindset.",
+        howIWorkBody:
+          "I treat Web3 infrastructure as financial infrastructure. That means explicit invariants, safe authority models, and transaction UX that users can trust.",
+        contactHeading: "Open to Web3 collaborations.",
+        contactBody:
+          "Reach out for Solana programs, protocol tooling, or Web3 product work.",
+        otherProjectsHeading: "Other Projects",
+        otherProjectsIntro: "Additional systems shipped across security, analytics, and commerce.",
+        whatIBuild: [
+          "Solana programs with deterministic PDA structures and safe upgrades",
+          "Protocol tooling for treasury, fees, and market lifecycle management",
+          "Indexing and analytics pipelines for on-chain state + user positions",
+          "Web3 frontends with clear transaction states and wallet UX",
+          "Operational infrastructure for high-volume token distributions",
+        ],
+        techStack: [
+          { label: "Blockchain", value: "Solana, Anchor" },
+          { label: "Frontend", value: "Next.js, React, Tailwind" },
+          { label: "Backend", value: "Node.js, NestJS, Prisma" },
+          { label: "Infra", value: "Linux, NGINX, PM2" },
+          { label: "Auth", value: "Wallet adapters, Privy" },
+          { label: "Tooling", value: "Custom Solana scripts & services" },
+        ],
+        workPrinciples: [
+          "Treat Web3 infra like financial infrastructure",
+          "Prioritize safety, invariants, and clear failure modes",
+          "Ship usable UX with reliable transaction flows",
+          "Build for long-term maintainability and upgrades",
+        ],
+        primaryCategory: "web3" as const,
+      }
+    : {
+        heroTagline: "Software Engineer & Product Builder",
+        aboutTitle: "Full-stack engineer focused on secure, scalable systems.",
+        aboutBody:
+          "I’m a full-stack software engineer with 4+ years of experience building production-grade web apps, internal tools, and on-chain products. I turn complex ideas into scalable, secure, and maintainable systems — from business dashboards and eCommerce platforms to encrypted apps and Solana smart contracts.",
+        aboutTags: ["Security-first", "Product-minded", "Systems builder", "Operational UX"],
+        coreStrengths: [
+          "Secure applications with encryption, auth flows, and sensitive data",
+          "Admin-heavy systems with reporting, analytics, and role-based dashboards",
+          "Real business tools for payments, inventory, affiliates, and subscriptions",
+          "Blockchain & Web3 products with Solana + Anchor",
+        ],
+        buildHeading: "From database design to polished customer experience.",
+        projectsHeading: "Products built for security, scale, and real business needs.",
+        projectsIntro:
+          "Highlighted software systems plus other production work across commerce, analytics, and security.",
+        experienceHeading: "Delivery across business-critical systems.",
+        experienceBody:
+          "I’ve shipped dashboards, commerce platforms, encrypted systems, and on-chain products with production-grade reliability. My focus stays on durability, clarity, and measurable business impact.",
+        capabilities: [
+          { label: "Encrypted data platforms", value: "Security & UX" },
+          { label: "Admin analytics & reporting", value: "BI & performance" },
+          { label: "Commerce + POS", value: "Operations" },
+          { label: "Solana programs", value: "On-chain logic" },
+        ],
+        techStackIntro:
+          "Writing on systems, security, and shipping soon. Meanwhile, here’s the stack behind my recent work.",
+        howIWorkHeading: "Calm execution with a product-first mindset.",
+        howIWorkBody:
+          "I prioritize clarity, resilience, and measurable outcomes. I’m comfortable navigating complex codebases, evolving requirements, and long-term maintainability.",
+        contactHeading: "Open to new collaborations.",
+        contactBody:
+          "Reach out for product builds, infrastructure upgrades, or on-chain experiments.",
+        otherProjectsHeading: "Other Projects",
+        otherProjectsIntro: "Additional work across Web3, infrastructure, and security.",
+        whatIBuild: [
+          "End-to-end products: database → backend → frontend → deployment",
+          "Admin-heavy systems with reporting, analytics, and role-based dashboards",
+          "Secure applications with encryption, auth flows, and sensitive data",
+          "Blockchain & Web3 products, especially on Solana",
+          "Business tools: POS, payments, inventory, affiliates, subscriptions",
+        ],
+        techStack: [
+          { label: "Frontend", value: "Next.js, React, Tailwind, shadcn/ui" },
+          { label: "Backend", value: "Node.js, NestJS, Prisma" },
+          { label: "Database", value: "PostgreSQL" },
+          { label: "Security", value: "AES-GCM, session keys, secure storage" },
+          { label: "Blockchain", value: "Solana, Anchor, Web3 integrations" },
+          { label: "Infra", value: "NGINX, PM2, Linux servers, WSL, subdomains" },
+          { label: "Payments & Email", value: "Schedulers, delivery pipelines" },
+        ],
+        workPrinciples: [
+          "Product-minded: features, users, edge cases",
+          "Comfortable with complex systems and refactors",
+          "Strong debugging instincts (infra, backend, smart contracts)",
+          "Build for long-term maintainability, not hacks",
+        ],
+        primaryCategory: "other" as const,
+      };
+
+  const whatIBuild = content.whatIBuild;
 
   const projects: ProjectItem[] = [
     {
@@ -250,21 +366,9 @@ export default function PortfolioPage() {
     },
   ];
 
-  const techStack: TechStackItem[] = [
-    { label: "Blockchain", value: "Solana, Anchor" },
-    { label: "Frontend", value: "Next.js, React, Tailwind" },
-    { label: "Backend", value: "Node.js, NestJS, Prisma" },
-    { label: "Infra", value: "Linux, NGINX, PM2" },
-    { label: "Auth", value: "Wallet adapters, Privy" },
-    { label: "Tooling", value: "Custom Solana scripts & services" },
-  ];
+  const techStack: TechStackItem[] = content.techStack;
 
-  const workPrinciples = [
-    "Treat Web3 infra like financial infrastructure",
-    "Prioritize safety, invariants, and clear failure modes",
-    "Ship usable UX with reliable transaction flows",
-    "Build for long-term maintainability and upgrades",
-  ];
+  const workPrinciples = content.workPrinciples;
 
   const tokens = {
     labelText: isDark ? "text-neutral-500" : "text-neutral-700",
@@ -305,13 +409,35 @@ export default function PortfolioPage() {
         onCloseMenu={() => setIsMenuOpen(false)}
         onToggleTheme={toggleTheme}
       />
-      <PortfolioHero parallax={parallax} labelText={tokens.labelText} />
+      <PortfolioHero
+        parallax={parallax}
+        labelText={tokens.labelText}
+        tagline={content.heroTagline}
+      />
       <PortfolioSections
         tokens={tokens}
         whatIBuild={whatIBuild}
         projects={projects}
         techStack={techStack}
         workPrinciples={workPrinciples}
+        primaryCategory={content.primaryCategory}
+        aboutTitle={content.aboutTitle}
+        aboutBody={content.aboutBody}
+        aboutTags={content.aboutTags}
+        coreStrengths={content.coreStrengths}
+        buildHeading={content.buildHeading}
+        projectsHeading={content.projectsHeading}
+        projectsIntro={content.projectsIntro}
+        experienceHeading={content.experienceHeading}
+        experienceBody={content.experienceBody}
+        capabilities={content.capabilities}
+        techStackIntro={content.techStackIntro}
+        howIWorkHeading={content.howIWorkHeading}
+        howIWorkBody={content.howIWorkBody}
+        contactHeading={content.contactHeading}
+        contactBody={content.contactBody}
+        otherProjectsHeading={content.otherProjectsHeading}
+        otherProjectsIntro={content.otherProjectsIntro}
         parallax={parallax}
         onViewProjects={handleViewProjects}
       />
