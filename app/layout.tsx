@@ -13,23 +13,68 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
-  description:
-    "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
-  openGraph: {
-    title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
-    description:
-      "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
-    description:
-      "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
-  },
-};
+const portfolioMode = (process.env.NEXT_PUBLIC_PORTFOLIO_MODE ?? "web3").toLowerCase();
+const isWeb3 = !["js", "javascript", "software", "fullstack"].includes(portfolioMode);
+
+const metadataBase: Metadata = isWeb3
+  ? {
+      title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
+      description:
+        "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
+      keywords: [
+        "Ngene Daniel",
+        "Web3",
+        "Solana",
+        "Anchor",
+        "blockchain",
+        "smart contracts",
+        "Lagos",
+        "Nigeria",
+      ],
+      authors: [{ name: "Ngene Daniel", url: "https://github.com/DanielChristLight1999" }],
+      openGraph: {
+        title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
+        description:
+          "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Ngene Daniel — Web3 Engineer (Solana-Focused)",
+        description:
+          "Web3 engineer building production-grade Solana applications across smart contracts, protocol tooling, indexing infrastructure, and Web3 frontends.",
+      },
+    }
+  : {
+      title: "Ngene Daniel — Software Engineer",
+      description:
+        "Full-stack software engineer building production-grade web apps, internal tools, and scalable systems. JavaScript, Node.js, React, and Solana.",
+      keywords: [
+        "Ngene Daniel",
+        "Software Engineer",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "full-stack",
+        "Lagos",
+        "Nigeria",
+      ],
+      authors: [{ name: "Ngene Daniel", url: "https://github.com/DanielChristLight1999" }],
+      openGraph: {
+        title: "Ngene Daniel — Software Engineer",
+        description:
+          "Full-stack software engineer building production-grade web apps, internal tools, and scalable systems. JavaScript, Node.js, React, and Solana.",
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Ngene Daniel — Software Engineer",
+        description:
+          "Full-stack software engineer building production-grade web apps, internal tools, and scalable systems. JavaScript, Node.js, React, and Solana.",
+      },
+    };
+
+export const metadata: Metadata = metadataBase;
 
 export default function RootLayout({
   children,
