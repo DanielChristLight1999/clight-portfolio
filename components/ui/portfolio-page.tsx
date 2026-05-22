@@ -210,6 +210,21 @@ export default function PortfolioPage() {
 
   const projects: ProjectItem[] = [
     {
+      category: "other",
+      title: "AI Fashion Try-On",
+      summary:
+        "Production app where users upload a full-body photo and a top garment image to generate realistic virtual try-on previews.",
+      links: {
+        demo: "https://fashion.danielngene.com",
+      },
+      highlights: [
+        "Presigned upload flow to Cloudflare R2",
+        "Job pipeline with queued/processing/succeeded/failed states",
+        "Async AI inference via Hugging Face Space API + Gradio client",
+      ],
+      focus: ["Next.js 16", "Prisma/PostgreSQL", "AI inference reliability"],
+    },
+    {
       category: "web3",
       title: "On-Chain Prediction Markets — WHEN",
       summary:

@@ -206,7 +206,14 @@ export function PortfolioSections({
                   className={`rounded-3xl border ${borderTone} ${panelBg} p-8 transition-all duration-700 hover:-translate-y-2 hover:border-[#C3E41D]/40`}
                   style={{ transform: parallax(-0.015) }}
                 >
-                  <h3 className="text-2xl font-semibold">{project.title}</h3>
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-2xl font-semibold">{project.title}</h3>
+                    {project.links?.demo && (
+                      <span className="inline-flex items-center rounded-full bg-[#C3E41D] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-black">
+                        Live
+                      </span>
+                    )}
+                  </div>
                   <p className={`mt-3 ${mutedText} leading-relaxed text-sm sm:text-base`}>
                     {project.summary}
                   </p>
@@ -214,9 +221,11 @@ export function PortfolioSections({
                     <div className="mt-5 flex flex-wrap gap-3">
                       <a
                         href={project.links.demo}
-                        className={`inline-flex items-center gap-2 rounded-full border ${borderTone} px-4 py-2 text-xs uppercase tracking-wide ${bodyText} transition-all duration-500 hover:-translate-y-0.5 hover:border-[#C3E41D]/60 hover:text-[#C3E41D]`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#C3E41D] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-black shadow-[0_10px_24px_rgba(195,228,29,0.35)] transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#d3f046]"
                       >
-                        Live Demo
+                        Launch Live Demo
                       </a>
                     </div>
                   )}
